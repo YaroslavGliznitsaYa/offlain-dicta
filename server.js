@@ -103,11 +103,13 @@ app.post('/api/upload', upload.single('audio'), async (req, res) => {
     }
 
   } catch (error) {
-    console.error('!!! ОШИБКА ОТ AMOCRM !!!');
-    console.dir(amoError.response?.data, { depth: null, colors: true });
+    console.error('!!! ОШИБКА СЕРВЕРА !!!');
+    console.dir(error, { depth: null, colors: true });
     res.status(500).json({ error: 'Внутренняя ошибка сервера' });
   }
+
 });
+
 
 // Запуск
 // Слушаем 0.0.0.0, чтобы облако видело нас
