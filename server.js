@@ -110,6 +110,9 @@ app.post('/api/upload', upload.single('audio'), async (req, res) => {
 });
 
 // Запуск
-app.listen(PORT, () => {
-  console.log(`🚀 Сервер запущен! Адрес: http://localhost:${PORT}`);
+// Слушаем 0.0.0.0, чтобы облако видело нас
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 Сервер запущен на порту ${PORT}`);
 });
+
+
