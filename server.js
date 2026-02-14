@@ -8,6 +8,18 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+const typeMap = {
+  lead: "leads",
+  contact: "contacts",
+  company: "companies",
+  customer: "customers",
+  1: "leads",
+  2: "contacts",
+  3: "companies",
+  12: "customers"
+};
+
+
 app.use(cors());
 app.use(express.json());
 
@@ -36,7 +48,10 @@ const AMO_ACCESS_TOKEN= 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjM1MmM0MmF
 
 // === Функция отправки записи в amoCRM ===
 const createF5CallNote = async (entityId, entityType, params) => {
-  const url = `https://${AMO_SUBDOMAIN}.amocrm.ru/api/v4/${entityType}/${entityId}/notes`;
+  const apiType = typeMap[entityType] || "leads";
+  const url = `https://${AMO_SUBDOMAIN}.amocrm.ru/api/v4/${apiType}/${entityId}/notes`;
+
+
 
   const payload = [
     {
