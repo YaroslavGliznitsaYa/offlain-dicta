@@ -84,9 +84,9 @@ app.post('/api/upload', upload.single('audio'), async (req, res) => {
     }
 
     // Формируем ссылку на файл
-    const protocol = req.headers['x-forwarded-proto'] || req.protocol;
     const host = req.get('host');
-    const fileUrl = `${protocol}://${host}/uploads/${file.filename}`;
+    const fileUrl = `https://${host}/uploads/${file.filename}`;
+
 
     console.log("Файл сохранён:", fileUrl);
 
