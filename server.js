@@ -49,7 +49,7 @@ const createF5CallNote = async (entityId, entityType, params) => {
 
   return axios.post(url, payload, {
     headers: {
-      Authorization: `Bearer ${ACCESS_TOKEN}`,
+      Authorization: `Bearer ${AMO_ACCESS_TOKEN}`,
       "Content-Type": "application/json"
     }
   });
