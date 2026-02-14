@@ -20,6 +20,7 @@ const typeMap = {
 };
 
 
+
 app.use(cors());
 app.use(express.json());
 
@@ -37,9 +38,11 @@ app.use('/uploads', express.static(UPLOAD_DIR));
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, UPLOAD_DIR),
   filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
+    const safeName = file.originalname.replace(/\s+/g, '_');
+    cb(null, `${Date.now()}-${safeName}`);
   }
 });
+
 const upload = multer({ storage });
 
 // === Переменные окружения ===
